@@ -7,17 +7,23 @@
 @section('content')
     <div class="card mb-4 bg-transparent special-card rounded-corners">
         <div class="card-body">
-            <form method="post" id="frmpost" action="">
+            @if(Session::has('status'))
+                <div class="alert alert-success">
+                    {{ Session::get('status') }}
+                </div>
+            @endif
+            <form method="post" id="frmpost" action="/">
+                {{ csrf_field() }}
                 <fieldset class="mb-2">
                     <legend>Erzahle deinen Traum</legend>
                 </fieldset>
                 <div class="form-row">
                     <div class="col-9">
-                        <input type="text" class="form-control" id="name" placeholder="Name">
+                        <input type="text" class="form-control" id="dreamer" placeholder="Name" name="dreamer" value="{{ old('dreamer') }}">
                     </div>
                     <div class="col">
                         <div class="custom-control custom-checkbox mb-1 mt-1 float-right">
-                            <input class="custom-control-input" type="checkbox" id="autoSizingCheck">
+                            <input class="custom-control-input" type="checkbox" id="autoSizingCheck" name="isanonymnous" {{ old('isanonymnous') }}>
                             <label class="custom-control-label" for="autoSizingCheck">
                                 Anonym Erzahlen
                             </label>
@@ -25,19 +31,28 @@
                     </div>
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" class="form-control" id="titel" placeholder="Titel">
+                    <input type="text" class="form-control" id="title" placeholder="Title" name="title" value="{{ old('title') }}">
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" id="habgetraumt" rows="3" placeholder="hab getraumt..."></textarea>
+                    <textarea class="form-control" id="habgetraumt" rows="3" placeholder="hab getraumt..." name="body">{{ old('body') }}</textarea>
                 </div>
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" id="gridCheck">
+                        <input class="custom-control-input" type="checkbox" id="gridCheck" name="agree" {{ old('agree') }}>
                         <label class="custom-control-label" for="gridCheck">
                             Ich Erlaube hiermitdie Nutzung meines Traumes online und offline und gehwahrehab getraumt.de eine ubesschrankte Lizenz dafur
                         </label>
                     </div>
                 </div>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <button type="submit" class="btn btn-outline-primary btnfix rounded-corners">TRAUM SENDEN &nbsp;<span class="fas fa-caret-right fa-2x align-middle"></span></button>
             </form>
         </div>

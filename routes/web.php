@@ -16,7 +16,6 @@ Route::get('/', function () {
     return view('home', compact('dreams'));
 });
 
-
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
@@ -26,3 +25,5 @@ Route::get('page/{slug}', function($slug){
     $post = App\Post::where('slug', '=', $slug)->firstOrFail();
     return view('post', compact('post'));
 });
+
+Route::post('/', 'DreamController@store');
