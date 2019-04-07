@@ -16,10 +16,11 @@ class CreateDreams extends Migration
         Schema::create('dreams', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
+            $table->string('slug');
             $table->mediumText('body');
             $table->bigInteger('views');
             $table->string('dreamer');
-            $table->smallInteger('order');
+            $table->smallInteger('ordering');
             $table->timestamps();
         });
     }

@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('home');
+    $dreams = App\Dream::all();
+    return view('home', compact('dreams'));
 });
 
 

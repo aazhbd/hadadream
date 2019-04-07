@@ -43,4 +43,21 @@
         </div>
     </div>
 
+    @foreach($dreams as $dream)
+        <div class="card mb-4 rounded-corners">
+            <div class="card-body">
+                <h2 class="card-title"><a href="/dream/{{ $dream->slug }}"><span>{{ $dream->title }}</span></a></h2>
+                <p class="card-text">{{ $dream->body }}</p>
+                <a href="/dream/{{ $dream->slug }}">alles anzeigen</a>
+                <table class="table table-sm text-muted my-0 mt-2">
+                    <tr>
+                        <td class="px-0 py-0 pt-2">17 mal gelesen</td>
+                        <td class="px-0 py-0 pt-2 text-center">2 Kommentare</td>
+                        <td class="px-0 py-0 pt-2 text-right">{{ $dream->created_at }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    @endforeach
+
 @endsection
