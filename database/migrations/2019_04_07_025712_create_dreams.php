@@ -19,6 +19,7 @@ class CreateDreams extends Migration
             $table->mediumText('body');
             $table->bigInteger('views');
             $table->string('dreamer');
+            $table->smallInteger('order');
             $table->timestamps();
         });
     }
