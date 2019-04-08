@@ -39,7 +39,7 @@ class DreamController extends Controller
             'title' => 'required',
             'body' => 'required',
             'dreamer' => 'required',
-            'agree' => 'required',
+            'agree' => 'required'
         ]);
 
         $dream = new Dream;
@@ -61,7 +61,7 @@ class DreamController extends Controller
 
         $request->session()->flash('status', 'Dream successfully added!');
 
-        return redirect('/')->withInput();
+        return redirect('/');
     }
 
     /**

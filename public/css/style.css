@@ -26,3 +26,7 @@
 .btnfix:hover {
     background: #007bff;
 }
+
+.error {
+    color: #8b0000;
+}

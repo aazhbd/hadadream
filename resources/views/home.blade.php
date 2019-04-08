@@ -4,6 +4,66 @@
     Start Page
 @endsection
 
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src='https://www.google.com/recaptcha/api.js'></script>
+
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            $("#errors").hide();
+
+            $("#frmpost").validate({
+                ignore: ".ignore",
+                errorClass: "error",
+                groups: {
+                    agree: "agree"
+                },
+                errorPlacement: function(error, element) {
+                    if (element.attr("name") == "agree") {
+                        error.insertAfter("#agree-label");
+                    } else {
+                        error.insertAfter(element);
+                    }
+                },
+                rules:{
+                    dreamer:{ required: true , maxlength: 100 },
+                    title:{ required: true, maxlength: 255},
+                    body:{ required: true, maxlength: 20000},
+                    agree: { required: true },
+                    "hiddenRecaptcha": {
+                        required: function() {
+                            if(grecaptcha.getResponse() == '') {
+                                return true;
+                            } else {
+                                return false;
+                            }
+                        }
+                    }
+                },
+                messages:{
+                    dreamer: {
+                        required: "Please Enter name of the dreamer.",
+                        maxlength: "Name can't be longer than 100 characters."
+                    },
+                    title: {
+                        required: "Please enter the dream title.",
+                        maxlength: "Title can't be longer than 255 characters."
+                    },
+                    body: {
+                        required: "Description of dream is required.",
+                        maxlength: "Description can't be longer than 20000 characters."
+                    },
+                    agree: {
+                        required: "Accept terms and conditions.",
+                    },
+                    "hiddenRecaptcha": "The captcha was not validated."
+                }
+            });
+        });
+    </script>
+@endsection
+
 @section('content')
     <div class="card mb-4 bg-transparent special-card rounded-corners">
         <div class="card-body">
@@ -23,7 +83,7 @@
                     </div>
                     <div class="col">
                         <div class="custom-control custom-checkbox mb-1 mt-1 float-right">
-                            <input class="custom-control-input" type="checkbox" id="autoSizingCheck" name="isanonymnous" {{ old('isanonymnous') }}>
+                            <input class="custom-control-input" type="checkbox" id="autoSizingCheck" name="isanonymnous" @if(old('isanonymnous')) checked @endif >
                             <label class="custom-control-label" for="autoSizingCheck">
                                 Anonym Erzahlen
                             </label>
@@ -37,9 +97,14 @@
                     <textarea class="form-control" id="habgetraumt" rows="3" placeholder="hab getraumt..." name="body">{{ old('body') }}</textarea>
                 </div>
                 <div class="form-group">
+                    <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" style="float: left;"></div>
+                    <input id="hiddenRecaptcha" type="hidden" class="hiddenRecaptcha required" name="hiddenRecaptcha" />
+                    <div class="clearfix"></div>
+                </div>
+                <div class="form-group">
                     <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" id="gridCheck" name="agree" {{ old('agree') }}>
-                        <label class="custom-control-label" for="gridCheck">
+                        <input class="custom-control-input" type="checkbox" id="agree" name="agree" @if(old('agree')) checked @endif >
+                        <label class="custom-control-label" for="agree" id="agree-label">
                             Ich Erlaube hiermitdie Nutzung meines Traumes online und offline und gehwahrehab getraumt.de eine ubesschrankte Lizenz dafur
                         </label>
                     </div>
