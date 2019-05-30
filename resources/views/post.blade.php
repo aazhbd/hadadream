@@ -13,7 +13,7 @@
             <a href="/dream/{{ $post->slug }}">alles anzeigen</a>
             <table class="table table-sm text-muted my-0 mt-2">
                 <tr>
-                    <td class="px-0 py-0 pt-2">17 mal gelesen</td>
+                    <td class="px-0 py-0 pt-2">{{$post->views}} mal gelesen</td>
                     <td class="px-0 py-0 pt-2 text-center">2 Kommentare</td>
                     <td class="px-0 py-0 pt-2 text-right">{{ $post->created_at }}</td>
                 </tr>
