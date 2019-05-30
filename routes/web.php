@@ -12,23 +12,25 @@
 */
 
 Route::get('/', function () {
+    $populars = App\Dream::orderBy('views')->get();
+    View::share ( 'populars', $populars);
     $dreams = App\Dream::all();
     return view('home', compact('dreams'));
 });
 
+Route::post('/', 'DreamController@store');
+
+Route::get('dream/{slug}', 'DreamController@show');
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
-
 
 Route::get('page/{slug}', function($slug){
     $post = App\Post::where('slug', '=', $slug)->firstOrFail();
     return view('post', compact('post'));
 });
 
-Route::post('/', 'DreamController@store');
-
-Route::get('dream/{slug}', 'DreamController@show');
 
 //Route::get('dream/{slug}', function($slug){
 //    $post = App\Dream::where('slug', '=', $slug)->firstOrFail();

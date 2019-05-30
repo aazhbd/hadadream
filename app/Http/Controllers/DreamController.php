@@ -6,9 +6,16 @@ use App\Dream;
 use App\Post;
 use App\Viewer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class DreamController extends Controller
 {
+    public function __construct()
+    {
+        $populars = Dream::orderBy('views')->get();
+        View::share ( 'populars', $populars);
+    }
+
     /**
      * Display a listing of the resource.
      *
