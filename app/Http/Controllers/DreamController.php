@@ -72,7 +72,8 @@ class DreamController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Dream::where('slug', '=', $id)->firstOrFail();
+        return view('post', compact('post'));
     }
 
     /**

@@ -28,7 +28,9 @@ Route::get('page/{slug}', function($slug){
 
 Route::post('/', 'DreamController@store');
 
-Route::get('dream/{slug}', function($slug){
-    $post = App\Dream::where('slug', '=', $slug)->firstOrFail();
-    return view('post', compact('post'));
-});
+Route::get('dream/{slug}', 'DreamController@show');
+
+//Route::get('dream/{slug}', function($slug){
+//    $post = App\Dream::where('slug', '=', $slug)->firstOrFail();
+//    return view('post', compact('post'));
+//});
