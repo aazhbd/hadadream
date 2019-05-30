@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Dream;
+use App\Post;
+use App\Viewer;
 use Illuminate\Http\Request;
 
 class DreamController extends Controller
@@ -64,6 +66,32 @@ class DreamController extends Controller
         return redirect('/');
     }
 
+    function getUserIP()
+    {
+        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+            $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+            $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        }
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote  = $_SERVER['REMOTE_ADDR'];
+
+        if(filter_var($client, FILTER_VALIDATE_IP))
+        {
+            $ip = $client;
+        }
+        elseif(filter_var($forward, FILTER_VALIDATE_IP))
+        {
+            $ip = $forward;
+        }
+        else
+        {
+            $ip = $remote;
+        }
+
+        return $ip;
+    }
+
     /**
      * Display the specified resource.
      *
@@ -73,6 +101,19 @@ class DreamController extends Controller
     public function show($id)
     {
         $post = Dream::where('slug', '=', $id)->firstOrFail();
+
+        try {
+            $viewer = new Viewer;
+            $viewer->ipaddress = $this->getUserIP();
+            $viewer->useragent = $_SERVER['HTTP_USER_AGENT'];
+            $viewer->save();
+
+            $post->views = $post->views + 1;
+            $post->save();
+        } catch(\Exception $ex) {
+            // view count doesn't get incremented for duplicate ip
+        }
+
         return view('post', compact('post'));
     }
 
