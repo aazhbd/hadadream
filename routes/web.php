@@ -14,6 +14,10 @@
 Route::get('/', function () {
     $populars = App\Dream::orderBy('views')->get();
     View::share ( 'populars', $populars);
+
+    $randoms = App\Dream::inRandomOrder()->get();
+    View::share ( 'randoms', $randoms);
+
     $dreams = App\Dream::all();
     return view('home', compact('dreams'));
 });

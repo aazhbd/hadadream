@@ -14,6 +14,9 @@ class DreamController extends Controller
     {
         $populars = Dream::orderBy('views')->get();
         View::share ( 'populars', $populars);
+
+        $randoms = Dream::inRandomOrder()->get();
+        View::share ( 'randoms', $randoms);
     }
 
     /**

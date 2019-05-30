@@ -61,20 +61,9 @@
                 <div class="card-body">
                     <h6><strong>Zufällige Traume</strong></h6>
                     <ul class="list-unstyled">
-                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                        <li><a href="#">Consectetur adipiscing elit</a></li>
-                        <li><a href="#">Integer molestie lorem at massa</a></li>
-                        <li><a href="#">Facilisis in pretium nisl aliquet</a></li>
-                        <li><a href="#">Faucibus porta lacus fringilla vel</a></li>
-                        <li><a href="#">Aenean sit amet erat nunc</a></li>
-                        <li><a href="#">Eget porttitor lorem</a></li>
-                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                        <li><a href="#">Consectetur adipiscing elit</a></li>
-                        <li><a href="#">Integer molestie lorem at massa</a></li>
-                        <li><a href="#">Facilisis in pretium nisl aliquet</a></li>
-                        <li><a href="#">Faucibus porta lacus fringilla vel</a></li>
-                        <li><a href="#">Aenean sit amet erat nunc</a></li>
-                        <li><a href="#">Eget porttitor lorem</a></li>
+                        @foreach($randoms as $random)
+                            <li><a href="/dream/{{$random->slug}}">{{$random->title}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
