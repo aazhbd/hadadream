@@ -51,9 +51,11 @@
                 <div class="card-body">
                     <h6><strong>Beliebte Träume</strong></h6>
                     <ul class="list-unstyled">
-                        @foreach($populars as $popular)
-                        <li><a href="/dream/{{$popular->slug}}">{{$popular->title}}</a></li>
-                        @endforeach
+                        @isset($populars)
+                            @foreach($populars as $popular)
+                                <li><a href="/dream/{{$popular->slug}}">{{$popular->title}}</a></li>
+                            @endforeach
+                        @endisset
                     </ul>
                 </div>
             </div>
@@ -61,9 +63,11 @@
                 <div class="card-body">
                     <h6><strong>Zufällige Traume</strong></h6>
                     <ul class="list-unstyled">
-                        @foreach($randoms as $random)
-                            <li><a href="/dream/{{$random->slug}}">{{$random->title}}</a></li>
-                        @endforeach
+                        @isset($randoms)
+                            @foreach($randoms as $random)
+                                <li><a href="/dream/{{$random->slug}}">{{$random->title}}</a></li>
+                            @endforeach
+                        @endisset
                     </ul>
                 </div>
             </div>
