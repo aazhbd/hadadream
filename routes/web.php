@@ -31,6 +31,12 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('page/{slug}', function($slug){
+    $populars = App\Dream::orderBy('views')->get();
+    View::share ( 'populars', $populars);
+
+    $randoms = App\Dream::inRandomOrder()->get();
+    View::share ( 'randoms', $randoms);
+
     $post = App\Post::where('slug', '=', $slug)->firstOrFail();
     return view('post', compact('post'));
 });
