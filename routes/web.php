@@ -12,10 +12,10 @@
 */
 
 Route::get('/', function () {
-    $populars = App\Dream::orderBy('views')->get();
+    $populars = App\Dream::orderBy('views')->limit(20)->get();
     View::share ( 'populars', $populars);
 
-    $randoms = App\Dream::inRandomOrder()->get();
+    $randoms = App\Dream::inRandomOrder()->limit(20)->get();
     View::share ( 'randoms', $randoms);
 
     $dreams = App\Dream::all();
