@@ -12,10 +12,10 @@ class DreamController extends Controller
 {
     public function __construct()
     {
-        $populars = Dream::orderBy('views')->get();
+        $populars = Dream::orderBy('views')->limit(20)->get();
         View::share ( 'populars', $populars);
 
-        $randoms = Dream::inRandomOrder()->get();
+        $randoms = Dream::inRandomOrder()->limit(20)->get();
         View::share ( 'randoms', $randoms);
     }
 
