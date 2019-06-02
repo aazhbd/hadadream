@@ -11,6 +11,16 @@
     <script type="text/javascript">
         $(document).ready(function()
         {
+            $("input[name='isanonymnous']").click(function(){
+                $("#dreamer").attr('disabled', !$("#dreamer").attr('disabled'));
+                if ($(this).is(':checked')) {
+                    $( "#dreamer" ).val( "Anonymous" );
+                }
+                else {
+                    $( "#dreamer" ).val( "" );
+                }
+            });
+
             $("#errors").hide();
 
             $("#frmpost").validate({
