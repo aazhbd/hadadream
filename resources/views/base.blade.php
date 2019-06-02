@@ -19,7 +19,7 @@
 <body class="mainbg">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top bg-transparent">
     <div class="container">
-        <a class="navbar-brand" href="#"><img src="{{ env('APP_URL') }}/images/logo.png" class="logo" alt=""/></a>
+        <a class="navbar-brand" href="/"><img src="{{ env('APP_URL') }}/images/logo.png" class="logo" alt=""/></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Beliebt</a>
+                    <a class="nav-link" href="/page/beliebt">Beliebt</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/page/uber-uns">Über uns</a>
@@ -74,15 +74,14 @@
         </div>
 
     </div>
-
 </div>
 <!-- /.container -->
 
 <!-- footer -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light footer">
     <div class="container">
-        <a class="navbar-brand" href="#">Copyright habegetraumt.de</a>
-        <a class="navbar-brand" href="#">Traumarchiv</a>
+        <a class="navbar-brand" href="/">Copyright habegetraumt.de</a>
+        <a class="navbar-brand" href="/page/traumarchiv">Traumarchiv</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -90,7 +89,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Impressum
+                    <a class="nav-link" href="/page/impressum">Impressum
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
