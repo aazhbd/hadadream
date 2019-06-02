@@ -59,14 +59,6 @@ class DreamController extends Controller
         $dream->title = request('title');
         $dream->dreamer = request('dreamer');
 
-        /*
-        if (request('isanonymnous') ) {
-            $dream->dreamer = 'Anonymnous';
-        } else {
-            $dream->dreamer = request('dreamer');
-        }
-        */
-
         $dream->slug = str_replace(' ', '-', trim(request('title')));
         $dream->body = request('body');
         $dream->views = 0;
