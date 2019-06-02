@@ -12,7 +12,7 @@
         $(document).ready(function()
         {
             $("input[name='isanonymnous']").click(function(){
-                $("#dreamer").attr('disabled', !$("#dreamer").attr('disabled'));
+                $("#dreamer").attr('readonly', !$("#dreamer").attr('readonly'));
                 if ($(this).is(':checked')) {
                     $( "#dreamer" ).val( "Anonymous" );
                 }
