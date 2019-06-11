@@ -85,7 +85,7 @@
             <form method="post" id="frmpost" action="/">
                 {{ csrf_field() }}
                 <fieldset class="mb-2">
-                    <legend>Erzahle deinen Traum</legend>
+                    <legend>Erzähle deinen Traum</legend>
                 </fieldset>
                 <div class="form-row">
                     <div class="col-9">
